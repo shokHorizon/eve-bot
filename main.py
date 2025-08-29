@@ -12,7 +12,7 @@ import utils.utils as utils
 import interfaces.waypoints as waypoints
 
 from chosenObject.chosenObject import ChosenObjects
-from items.items import Items
+from items.items import Items, Item
 from finder.finder import Finder
 from shipControl.shipControl import ShipControls
 from navigation.navigation import Navigations
@@ -216,9 +216,23 @@ def FSM_STORAGE_EMPTY_MINERALS() -> callable:
     utils.wait_for_img(Windows.Storage.Tabs.Ore, period=0, must_find=True)
     utils.left_click(Windows.Storage.Tabs.Ore)
 
-    while utils.wait_for_imgs([Items.Pyroxeres.logo, Items.Pyroxeres.logo], [], period=2, threshold=0.8) is not None:
-        utils.left_drag(Items.Pyroxeres.logo, Windows.Storage.Tabs.Storage, offset=20)
-        utils.left_drag(Items.Omber.logo, Windows.Storage.Tabs.Storage, offset=20)
+    while True:
+        item_to_drag: Item = None
+
+        if utils.wait_for_img(Items.Omber.logo):
+            item_to_drag = Items.Omber
+        if utils.wait_for_img(Items.Pyroxeres.logo):
+            item_to_drag = Items.Pyroxeres
+        if utils.wait_for_img(Items.Scordite.logo):
+            item_to_drag = Items.Scordite
+        if utils.wait_for_img(Items.Veldspar.logo):
+            item_to_drag = Items.Veldspar
+
+        if item_to_drag:
+            utils.left_drag(item_to_drag.logo, Windows.Storage.Tabs.Storage)
+            continue
+
+        break
 
     Windows.Storage.close()
 

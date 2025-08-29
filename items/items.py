@@ -13,3 +13,5 @@ class Items:
     AntimatterChargeS = Item('AntimatterChargeS')
     Pyroxeres = Item('Pyroxeres')
     Omber = Item('Omber')
+    Scordite = Item('Scordite')
+    Veldspar = Item('Veldspar')
