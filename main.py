@@ -34,11 +34,14 @@ def FSM_JUMP_UNTIL_HOME() -> callable:
         utils.wait_for_img(Navigations.Actions.MakeJump.images, period=1, must_find=True)
         utils.left_click(Navigations.Actions.MakeJump.images)
 
-        while utils.wait_for_img(Navigations.Icons.GoalGates, period=0.5):
+        while utils.wait_for_img(Navigations.Icons.GoalGates):
             continue
 
-        while not utils.wait_for_imgs((Navigations.Tabs.GatesTabs.images, Navigations.Actions.Dock), (), period=5):
+        while not utils.wait_for_imgs((Navigations.Tabs.GatesTabs.images, Navigations.Actions.Dock), ()):
             continue
+
+        if utils.wait_for_img(Navigations.Actions.Dock, period=0):
+            break
 
     utils.left_click(Navigations.Actions.Dock)
         
@@ -464,7 +467,11 @@ class Engine:
         self.wait_for_img_v1(Navigations.ExitTheDock, 120, 0.8)
 
     def prepare_for_mining(self):
+<<<<<<< HEAD
         fun = FSM_JUMP_UNTIL_HOME
+=======
+        fun = FSM_STORAGE_EMPTY_MINERALS
+>>>>>>> f2a7cb0e82ed388b80327b1f1b7b16e9c3fbe561
 
         while fun is not None:
             fun = fun()
