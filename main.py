@@ -83,7 +83,7 @@ def FSM_FIND_ORE() -> callable:
     if utils.wait_for_img(Navigations.Tabs.Asteroids.images, period=0):
         utils.left_click(Navigations.Tabs.Asteroids.images)
 
-    if utils.wait_for_img(Navigations.Filters.Distance.Unsorted.images, period=0, threshold=0.9):
+    if utils.wait_for_img(Navigations.Filters.Distance.Unsorted.images, period=0):
         utils.wait_for_img(Navigations.Filters.Distance.Unsorted.images, period=0, must_find=True)
         utils.left_click(Navigations.Filters.Distance.Unsorted.images)
 
@@ -93,7 +93,7 @@ def FSM_FIND_ORE() -> callable:
      
 
     start_time = time.time()
-    timeout = 60
+    timeout = 15
 
     while not utils.wait_for_img(Navigations.Objects.Resources.Types.Pyroxeres.images, period=0.1):
         if time.time() - start_time > timeout:

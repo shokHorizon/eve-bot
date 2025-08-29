@@ -343,7 +343,7 @@ def press_keys(keys):
     return True
 
 def scrollTop():
-    pyautogui.scroll(1800)
+    pyautogui.scroll(3600)
 
 def scroll():
-    pyautogui.scroll(-100)
+    pyautogui.scroll(-800)
