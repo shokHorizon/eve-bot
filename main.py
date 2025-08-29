@@ -93,7 +93,7 @@ def FSM_FIND_ORE() -> callable:
      
 
     start_time = time.time()
-    timeout = 30
+    timeout = 60
 
     while not utils.wait_for_img(Navigations.Objects.Resources.Types.Pyroxeres.images, period=0.1):
         if time.time() - start_time > timeout:
