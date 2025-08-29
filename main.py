@@ -460,7 +460,7 @@ class Engine:
         self.wait_for_img_v1(Navigations.ExitTheDock, 120, 0.8)
 
     def prepare_for_mining(self):
-        fun = FSM_STORAGE_EMPTY_MINERALS
+        fun = FSM_FIND_ORE
 
         while fun is not None:
             fun = fun()
