@@ -27,6 +27,9 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 def FSM_JUMP_UNTIL_HOME() -> callable:
     print('FSM_JUMP_UNTIL_HOME')
 
+    utils.wait_for_img(Navigations.Tabs.GatesTabs.images, must_find=True)
+    utils.left_click(Navigations.Tabs.GatesTabs.images)
+
     while not utils.wait_for_img(Navigations.Actions.Dock, period=0) and utils.wait_for_img(Navigations.Tabs.GatesTabs.images, period=0):
         utils.wait_for_img(Navigations.Icons.GoalGates, period=5, must_find=True)
         utils.right_click(Navigations.Icons.GoalGates)
