@@ -12,7 +12,7 @@ class Waypoints:
         self.img = cv.imread('templates/waypoints.png', cv.IMREAD_COLOR)
 
     def find(self):
-        screenshot = np.array(pyautogui.screenshot(allScreens=True))
+        screenshot = np.array(pyautogui.screenshot())
         
         result = cv.matchTemplate(screenshot, self.img, cv.TM_CCOEFF_NORMED)
         min_val, max_val, min_loc, max_loc = cv.minMaxLoc(result)

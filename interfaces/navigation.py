@@ -19,7 +19,7 @@ class Navigation:
         self.activate_gates_img = cv.imread('templates/activate_gates.jpg', cv.IMREAD_COLOR)
 
     def find_abyssal_trace(self):
-        screenshot = pyautogui.screenshot(allScreens=True)
+        screenshot = pyautogui.screenshot()
         screenshot_np = np.array(screenshot)
 
         result = cv.matchTemplate(screenshot_np, self.abyssal_trace_img, cv.TM_CCOEFF_NORMED)
@@ -31,7 +31,7 @@ class Navigation:
         return max_loc
     
     def activate_gates(self):
-        screenshot = pyautogui.screenshot(allScreens=True)
+        screenshot = pyautogui.screenshot()
         screenshot_np = np.array(screenshot)
 
         result = cv.matchTemplate(screenshot_np, self.activate_gates_img, cv.TM_CCOEFF_NORMED)

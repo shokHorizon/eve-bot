@@ -75,7 +75,7 @@ class ShipControl:
 
     
     def is_artillery_enabled(self):
-        screenshot = np.array(pyautogui.screenshot(allScreens=True))
+        screenshot = np.array(pyautogui.screenshot())
         result = cv.matchTemplate(screenshot, self.img, cv.TM_CCOEFF_NORMED)
         min_val, max_val, min_loc, max_loc = cv.minMaxLoc(result)
         

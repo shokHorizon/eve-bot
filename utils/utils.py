@@ -45,7 +45,7 @@ def right_click_position(x, y):
 
 def left_click(img: ImagePoolWrapper, threshold=0.95, offset = 5):
     print(f'try left click {img.name}')
-    screenshot = cv.cvtColor(np.array(pyautogui.screenshot(allScreens=True)), cv.COLOR_RGB2BGR)
+    screenshot = cv.cvtColor(np.array(pyautogui.screenshot()), cv.COLOR_RGB2BGR)
 
     for image in img.images:
         result = cv.matchTemplate(screenshot, image, cv.TM_CCOEFF_NORMED)
@@ -66,7 +66,7 @@ def left_click(img: ImagePoolWrapper, threshold=0.95, offset = 5):
 
 def left_click_all(img: ImagePoolWrapper, threshold=0.95, offset = 5):
     print(f'try left click {img.name}')
-    screenshot = cv.cvtColor(np.array(pyautogui.screenshot(allScreens=True)), cv.COLOR_RGB2BGR)
+    screenshot = cv.cvtColor(np.array(pyautogui.screenshot()), cv.COLOR_RGB2BGR)
 
     for image in img.images:
         result = cv.matchTemplate(screenshot, image, cv.TM_CCOEFF_NORMED)
@@ -83,7 +83,7 @@ def left_click_all(img: ImagePoolWrapper, threshold=0.95, offset = 5):
     
 def right_click(img: ImagePoolWrapper, threshold=0.95, offset = 5):
     print(f'try right click {img.name}')
-    screenshot = cv.cvtColor(np.array(pyautogui.screenshot(allScreens=True)), cv.COLOR_RGB2BGR)
+    screenshot = cv.cvtColor(np.array(pyautogui.screenshot()), cv.COLOR_RGB2BGR)
 
     for image in img.images:
         result = cv.matchTemplate(screenshot, image, cv.TM_CCOEFF_NORMED)
@@ -107,7 +107,7 @@ def wait_for_img(image_wrapper: ImagePoolWrapper, period=None, threshold=0.95, m
     print(f'waiting for img {image_wrapper.name}')
 
     while period is None or time.time() - t < period or period == 0:
-        screenshot = cv.cvtColor(np.array(pyautogui.screenshot(allScreens=True)), cv.COLOR_RGB2BGR)
+        screenshot = cv.cvtColor(np.array(pyautogui.screenshot()), cv.COLOR_RGB2BGR)
 
         for img in image_wrapper.images:
             result = cv.matchTemplate(screenshot, img, cv.TM_CCOEFF_NORMED)
@@ -129,7 +129,7 @@ def wait_for_imgs(imgs: List[ImagePoolWrapper], imgs_must_find:List[ImagePoolWra
     t = time.time()
 
     while period is None or time.time() - t < period or period == 0:
-        screenshot = cv.cvtColor(np.array(pyautogui.screenshot(allScreens=True)), cv.COLOR_RGB2BGR)
+        screenshot = cv.cvtColor(np.array(pyautogui.screenshot()), cv.COLOR_RGB2BGR)
 
         for imgWrapper in imgs:
             for img in imgWrapper.images:
@@ -156,7 +156,7 @@ def wait_for_imgs(imgs: List[ImagePoolWrapper], imgs_must_find:List[ImagePoolWra
 
 def left_drag(targetImage: ImagePoolWrapper, destinationImage: ImagePoolWrapper, threshold=0.95, offset = 5):
     print(f'try left drag {targetImage.name} to {destinationImage.name}')
-    screenshot = cv.cvtColor(np.array(pyautogui.screenshot(allScreens=True)), cv.COLOR_RGB2BGR)
+    screenshot = cv.cvtColor(np.array(pyautogui.screenshot()), cv.COLOR_RGB2BGR)
 
     target_max_val = 0
     target_max_loc = None
@@ -199,7 +199,7 @@ def left_drag(targetImage: ImagePoolWrapper, destinationImage: ImagePoolWrapper,
 
 
 def move_to(images: ImagePoolWrapper, threshold=0.95, offset = 5):
-    screenshot = cv.cvtColor(np.array(pyautogui.screenshot(allScreens=True)), cv.COLOR_RGB2BGR)
+    screenshot = cv.cvtColor(np.array(pyautogui.screenshot()), cv.COLOR_RGB2BGR)
 
     for image in images.images:
         result = cv.matchTemplate(screenshot, image, cv.TM_CCOEFF_NORMED)
@@ -219,7 +219,7 @@ def move_to(images: ImagePoolWrapper, threshold=0.95, offset = 5):
 
 def move_to_v1(object, threshold=0.95, offset = 5):
     print(f'try move to {object.name}')
-    screenshot = cv.cvtColor(np.array(pyautogui.screenshot(allScreens=True)), cv.COLOR_RGB2BGR)
+    screenshot = cv.cvtColor(np.array(pyautogui.screenshot()), cv.COLOR_RGB2BGR)
 
     result = cv.matchTemplate(screenshot, object.img, cv.TM_CCOEFF_NORMED)
     min_val, max_val, min_loc, max_loc = cv.minMaxLoc(result)
@@ -234,7 +234,7 @@ def move_to_v1(object, threshold=0.95, offset = 5):
 
 def left_click_v1(object, threshold=0.95, offset = 5):
         print(f'try left click {object.name}')
-        screenshot = cv.cvtColor(np.array(pyautogui.screenshot(allScreens=True)), cv.COLOR_RGB2BGR)
+        screenshot = cv.cvtColor(np.array(pyautogui.screenshot()), cv.COLOR_RGB2BGR)
     
         result = cv.matchTemplate(screenshot, object.img, cv.TM_CCOEFF_NORMED)
         min_val, max_val, min_loc, max_loc = cv.minMaxLoc(result)
@@ -251,7 +251,7 @@ def left_click_v1(object, threshold=0.95, offset = 5):
     
 def right_click_v1(object, threshold=0.95, offset = 5):
     print(f'try right click {object.name}')
-    screenshot = cv.cvtColor(np.array(pyautogui.screenshot(allScreens=True)), cv.COLOR_RGB2BGR)
+    screenshot = cv.cvtColor(np.array(pyautogui.screenshot()), cv.COLOR_RGB2BGR)
 
     result = cv.matchTemplate(screenshot, object.img, cv.TM_CCOEFF_NORMED)
     min_val, max_val, min_loc, max_loc = cv.minMaxLoc(result)
@@ -268,7 +268,7 @@ def right_click_v1(object, threshold=0.95, offset = 5):
 
 def left_drag_v1(target, destination, threshold=0.95, offset = 5):
     print(f'try left drag {target.name} to {destination.name}')
-    screenshot = cv.cvtColor(np.array(pyautogui.screenshot(allScreens=True)), cv.COLOR_RGB2BGR)
+    screenshot = cv.cvtColor(np.array(pyautogui.screenshot()), cv.COLOR_RGB2BGR)
 
     target_result = cv.matchTemplate(screenshot, target.img, cv.TM_CCOEFF_NORMED)
     _, target_max_val, _, target_max_loc = cv.minMaxLoc(target_result)
@@ -297,7 +297,7 @@ def wait_for_img_v1(img, period=None, threshold=0.95):
     t = time.time()
 
     while period is None or time.time() - t < period:
-        screenshot = cv.cvtColor(np.array(pyautogui.screenshot(allScreens=True)), cv.COLOR_RGB2BGR)
+        screenshot = cv.cvtColor(np.array(pyautogui.screenshot()), cv.COLOR_RGB2BGR)
 
         result = cv.matchTemplate(screenshot, img, cv.TM_CCOEFF_NORMED)
         min_val, max_val, min_loc, max_loc = cv.minMaxLoc(result)
@@ -316,7 +316,7 @@ def wait_for_imgs_v1(imgs, period=None, threshold=0.95):
     print(f'waiting for imgs')
 
     while period is None or time.time() - t < period:
-        screenshot = cv.cvtColor(np.array(pyautogui.screenshot(allScreens=True)), cv.COLOR_RGB2BGR)
+        screenshot = cv.cvtColor(np.array(pyautogui.screenshot()), cv.COLOR_RGB2BGR)
 
         for img in imgs:
             result = cv.matchTemplate(screenshot, img, cv.TM_CCOEFF_NORMED)
