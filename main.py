@@ -31,7 +31,7 @@ def FSM_JUMP_UNTIL_HOME() -> callable:
     utils.left_click(Navigations.Tabs.GatesTabs.images)
 
     while not utils.wait_for_img(Navigations.Actions.Dock, period=0) and utils.wait_for_img(Navigations.Tabs.GatesTabs.images, period=0):
-        utils.wait_for_img(Navigations.Icons.GoalGates, period=5, must_find=True)
+        utils.wait_for_img(Navigations.Icons.GoalGates, period=10, must_find=True)
         utils.right_click(Navigations.Icons.GoalGates)
         
         utils.wait_for_img(Navigations.Actions.MakeJump.images, period=1, must_find=True)
@@ -40,7 +40,7 @@ def FSM_JUMP_UNTIL_HOME() -> callable:
         while utils.wait_for_img(Navigations.Icons.GoalGates):
             continue
 
-        while not utils.wait_for_imgs((Navigations.Tabs.GatesTabs.images, Navigations.Actions.Dock), ()):
+        while not utils.wait_for_imgs((Navigations.Icons.GoalGates, Navigations.Actions.Dock), ()):
             continue
 
         if utils.wait_for_img(Navigations.Actions.Dock, period=0):
