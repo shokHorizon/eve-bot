@@ -219,13 +219,13 @@ def FSM_STORAGE_EMPTY_MINERALS() -> callable:
     while True:
         item_to_drag: Item = None
 
-        if utils.wait_for_img(Items.Omber.logo):
+        if utils.wait_for_img(Items.Omber.logo, period=0):
             item_to_drag = Items.Omber
-        if utils.wait_for_img(Items.Pyroxeres.logo):
+        if utils.wait_for_img(Items.Pyroxeres.logo, period=0):
             item_to_drag = Items.Pyroxeres
-        if utils.wait_for_img(Items.Scordite.logo):
+        if utils.wait_for_img(Items.Scordite.logo, period=0):
             item_to_drag = Items.Scordite
-        if utils.wait_for_img(Items.Veldspar.logo):
+        if utils.wait_for_img(Items.Veldspar.logo, period=0):
             item_to_drag = Items.Veldspar
 
         if item_to_drag:
