@@ -65,7 +65,7 @@ def FSM_SET_HOME_DESTINATION() -> callable:
 
 def FSM_NEXT_ASTEROID_BELT() -> callable:
     print('FSM_NEXT_ASTEROID_BELT')
-    utils.wait_for_img(Navigations.Objects.Resources.Types.AsteroidBelt.images, period=0)
+    utils.wait_for_img(Navigations.Objects.Resources.Types.AsteroidBelt.images, period=0, must_find=True)
     utils.right_click(Navigations.Objects.Resources.Types.AsteroidBelt.images)
 
     utils.wait_for_img(Navigations.Actions.EnterWarpMode, period=10, must_find=True)
@@ -90,10 +90,14 @@ def FSM_FIND_ORE() -> callable:
     utils.move_to(Navigations.Filters.Distance.Asc.images)
     utils.scrollTop()
 
+     
+
+    start_time = time.time()
+    timeout = 30
+
     while not utils.wait_for_img(Navigations.Objects.Resources.Types.Pyroxeres.images, period=0.1):
-        if utils.wait_for_img(Navigations.Objects.Resources.Types.AsteroidBelt.images, period=0):
+        if time.time() - start_time > timeout:
             return FSM_NEXT_ASTEROID_BELT
-        
         utils.scroll()
     
     utils.left_click(Navigations.Objects.Resources.Types.Pyroxeres.images)
