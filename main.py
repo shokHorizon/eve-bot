@@ -30,25 +30,19 @@ def FSM_JUMP_UNTIL_HOME() -> callable:
     utils.wait_for_img(Navigations.Tabs.GatesTabs.images, must_find=True)
     utils.left_click(Navigations.Tabs.GatesTabs.images)
 
-    while not utils.wait_for_img(Navigations.Actions.Dock, period=0) and utils.wait_for_img(Navigations.Tabs.GatesTabs.images, period=0):
-        utils.wait_for_img(Navigations.Icons.GoalGates, period=10, must_find=True)
-        utils.right_click(Navigations.Icons.GoalGates)
-        
-        utils.wait_for_img(Navigations.Actions.MakeJump.images, period=1, must_find=True)
-        utils.left_click(Navigations.Actions.MakeJump.images)
+    while not utils.wait_for_img(Navigations.Dock.Buttons.Exit.images, period=0):
+        if utils.wait_for_img(Navigations.Icons.GoalGates, period=0):
+            utils.right_click(Navigations.Icons.GoalGates)
+            
+            utils.wait_for_img(Navigations.Actions.MakeJump.images, period=15, must_find=True)
+            utils.left_click(Navigations.Actions.MakeJump.images)
 
-        while utils.wait_for_img(Navigations.Icons.GoalGates):
-            continue
-
-        while not utils.wait_for_imgs((Navigations.Icons.GoalGates, Navigations.Actions.Dock), ()):
             continue
 
         if utils.wait_for_img(Navigations.Actions.Dock, period=0):
-            break
+            utils.left_click(Navigations.Actions.Dock)
 
-    utils.left_click(Navigations.Actions.Dock)
-        
-    utils.wait_for_img(Navigations.Dock.Buttons.Exit.images)
+            continue
 
     return FSM_STORAGE_EMPTY_MINERALS
 
