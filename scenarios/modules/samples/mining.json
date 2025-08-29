@@ -1,0 +1,29 @@
+{
+    "name": "mining",
+    "actions": [{
+        "windows.storage.open": {}
+    },
+    {
+        "left_click": {
+            "image": "navigation.filters.aims"
+            }
+    },
+    {
+        "finder": {
+            "find_triggers": [{
+                    "image": "chosen_objects.unlock",
+                    "next_module": "find_ore"
+                },
+                {
+                    "image": "windows.storage.full_storage",
+                    "next_module": "set_home_destination"
+                }
+            ],
+            "not_find_triggers": [{
+                    "image": "navigation.icons.enemy",
+                    "next_module": "set_home_destination"
+                }
+            ]
+        }
+    }]
+}

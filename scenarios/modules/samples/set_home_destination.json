@@ -1,0 +1,17 @@
+{
+    "name": "set_home_destination",
+    "actions": [{
+       "wait_for_img_and_left_click": {
+           "image": "navigation.gates_filter"
+       }
+    },
+    {
+       "wait_for_img_and_left_click": {
+           "image": "navigation.enter_warp_mode"
+       }
+    },
+    {
+        "ship_controls.speed.activate": {}
+    }],
+    "next_module": "find_ore"
+}

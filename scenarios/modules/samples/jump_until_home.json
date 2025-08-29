@@ -1,0 +1,65 @@
+{
+    "name": "jump_until_home",
+    "actions": [{
+        "wait_for_img_and_left_click": {
+            "image": "navigation.gates_filter",
+            "period": 0.1
+        }
+    },
+    {
+        "while": {
+            "condition": {
+                "wait_for_img": {
+                    "image": "navigation.goal_gates",
+                    "period": 1
+                }
+            },
+            "actions": [{
+                "right_click": {
+                    "image": "navigation.goal_gates"
+                }
+            },
+            {
+                "wait_for_img_and_left_click": {
+                    "image": "navigation.make_jump",
+                    "period": 1
+                }
+            },
+            {
+                "while": {
+                    "condition": {
+                        "wait_for_img_and_left_click": {
+                            "image": "navigation.goal_gates",
+                            "period": 0.5
+                        }
+                    },
+                    "actions": {
+                        "continue": {}
+                    }
+                }
+            },
+            {
+                "wait_for_imgs": {
+                    "imgs": [
+                        "navigation.goal_gates",
+                        "navigation.enter_the_dock"
+                    ],
+                    "period": 15
+                }
+            },
+            {
+                "left_click": {
+                    "image": "navigation.enter_the_dock"
+                }
+            }]
+        }
+    },
+    {
+        "wait_for_img": {
+            "image": "buttons.exit_dock",
+            "period": 60
+        }
+    }
+],
+    "next_module": "storage_empty_minerals"
+}
