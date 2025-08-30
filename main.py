@@ -99,8 +99,6 @@ def FSM_NEXT_ASTEROID_BELT() -> callable:
 def FSM_FIND_ORE() -> callable:
     print('FSM_FIND_ORE')
 
-    utils.left_click(Navigations.Tabs.Asteroids.images)
-
     Windows.Storage.close()
 
     if utils.wait_for_img(Navigations.Tabs.Asteroids.images, period=0):
@@ -121,8 +119,8 @@ def FSM_FIND_ORE() -> callable:
             return FSM_NEXT_ASTEROID_BELT
         utils.scroll()
     
-    if utils.wait_for_img(Navigations.Objects.Resources.Types.Veldspar.images, period=0):
-        utils.left_click(Navigations.Objects.Resources.Types.Veldspar.images)
+    if utils.wait_for_img(Navigations.Objects.Resources.Types.Scordite.images, period=0):
+        utils.left_click(Navigations.Objects.Resources.Types.Scordite.images)
     elif utils.wait_for_img(Navigations.Objects.Resources.Types.Pyroxeres.images, period=0):
         utils.left_click(Navigations.Objects.Resources.Types.Pyroxeres.images)
     else:
