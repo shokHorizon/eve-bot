@@ -87,6 +87,8 @@ def FSM_NEXT_ASTEROID_BELT() -> callable:
 
     Windows.Agency.close()
 
+    utils.wait_for_img(ShipControls.Speed.Active, period=15, must_find=True)
+
     utils.left_click(Navigations.Filters.Aims)
 
     finder = Finder()

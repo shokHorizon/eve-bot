@@ -189,10 +189,10 @@ def left_drag(targetImage: ImagePoolWrapper, destinationImage: ImagePoolWrapper,
         return False
 
     pyautogui.moveTo(target_max_loc[0] + offset, target_max_loc[1] + offset)
-    time.sleep(0.5)
+    time.sleep(0.1)
     pyautogui.mouseDown()
     pyautogui.dragTo(destination_max_loc[0] + offset, destination_max_loc[1] + offset, duration=0.5, tween=pyautogui.easeInOutQuad)
-    time.sleep(0.5)
+    time.sleep(0.1)
     pyautogui.mouseUp()
 
     return True
