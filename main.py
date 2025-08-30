@@ -140,7 +140,8 @@ def FSM_ACTIVATE_ALL_MINERS() -> callable:
     while utils.wait_for_img(ShipControls.Miner.Active, period=2, threshold=0.99):
         utils.left_click(ShipControls.Miner.Active, threshold=0.98)
 
-    ShipControls.Miner.activate()
+    while not utils.wait_for_img(ShipControls.Miner.Active, period=2, threshold=0.99):
+        ShipControls.Miner.activate()
 
     return
 
@@ -174,20 +175,23 @@ def FSM_MINING() -> callable:
 
 def FSM_NAVIGATION_TO_POINT() -> callable:
     print('FSM_NAVIGATION_TO_POINT')
+
     utils.wait_for_img(Navigations.Tabs.GatesTabs.images, period=10, must_find=True)
     while not utils.left_click(Navigations.Tabs.GatesTabs.images):
         continue
 
-    while utils.wait_for_img(Navigations.Icons.GoalGates, period=5):
+    while utils.wait_for_imgs((Navigations.Icons.GoalGates, Navigations), (), period=5):
         utils.right_click(Navigations.Icons.GoalGates)
         
         utils.wait_for_img(Navigations.Actions.MakeJump.images, period=1, must_find=True)
-        utils.left_click(Navigations.Actions.MakeJump.images)
-
-        while utils.wait_for_img(Navigations.Icons.GoalGates, period=0):
+        if not utils.left_click(Navigations.Actions.MakeJump.images):
             continue
 
-        utils.wait_for_img(Navigations.Tabs.GatesTabs.images, period=20)
+        if utils.wait_for_img(Navigations.Icons.GoalGates, period=0):
+            continue
+
+        while utils.wait_for_img(Navigations.Tabs.GatesTabs.images, period=20):
+            continue
 
     return FSM_NEXT_ASTEROID_BELT
 
