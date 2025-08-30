@@ -114,9 +114,9 @@ def FSM_FIND_ORE() -> callable:
     utils.scrollTop()     
 
     start_time = time.time()
-    timeout = 15
+    timeout = 30
 
-    while not utils.wait_for_imgs((Navigations.Objects.Resources.Types.Pyroxeres.images, Navigations.Objects.Resources.Types.Scordite.images), (), period=0.1):
+    while not utils.wait_for_imgs((Navigations.Objects.Resources.Types.Pyroxeres.images, Navigations.Objects.Resources.Types.Scordite.images), (), period=0):
         if time.time() - start_time > timeout:
             return FSM_NEXT_ASTEROID_BELT
         utils.scroll()

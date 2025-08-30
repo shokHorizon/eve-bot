@@ -346,4 +346,4 @@ def scrollTop():
     pyautogui.scroll(3600)
 
 def scroll():
-    pyautogui.scroll(-800)
+    pyautogui.scroll(-200)
