@@ -123,7 +123,7 @@ def FSM_FIND_ORE() -> callable:
     
     if utils.wait_for_img(Navigations.Objects.Resources.Types.Veldspar.images, period=0):
         utils.left_click(Navigations.Objects.Resources.Types.Veldspar.images)
-    elif not utils.wait_for_img(Navigations.Objects.Resources.Types.Pyroxeres.images, period=0):
+    elif utils.wait_for_img(Navigations.Objects.Resources.Types.Pyroxeres.images, period=0):
         utils.left_click(Navigations.Objects.Resources.Types.Pyroxeres.images)
     else:
         return FSM_NEXT_ASTEROID_BELT
