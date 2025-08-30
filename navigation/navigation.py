@@ -32,4 +32,6 @@ class Navigations:
             class Types:
                 Pyroxeres = Navigation('Pyroxeres')
                 Omber = Navigation('Omber')
+                Scordite = Navigation('Scordite')
+                Veldspar = Navigation('Veldspar')
                 AsteroidBelt = Navigation('Asteroid belt')
