@@ -157,6 +157,7 @@ def FSM_MINING() -> callable:
     print('FSM_MINING')
 
     Windows.Storage.open()
+    utils.left_click(Windows.Storage.Tabs.Ore)
 
     utils.left_click(Navigations.Filters.Aims)
 
@@ -196,8 +197,8 @@ def FSM_DOCK_EXIT() -> callable:
 
     return FSM_NAVIGATION_TO_POINT
 
-def FSM_AGENCY_FIND_PYROXERES() -> callable:
-    print('FSM_AGENCY_FIND_PYROXERES')
+def FSM_AGENCY_FIND_ASTEROIDS() -> callable:
+    print('FSM_AGENCY_FIND_ASTEROIDS')
     Windows.Agency.open()
 
     utils.wait_for_img(Windows.Agency.Tabs.ResourceGathering, period=10, must_find=True)
@@ -206,7 +207,7 @@ def FSM_AGENCY_FIND_PYROXERES() -> callable:
     utils.wait_for_img(Windows.Agency.Buttons.AsteroidBelts, period=10, must_find=True)
     utils.left_click(Windows.Agency.Buttons.AsteroidBelts, threshold=0.9)
 
-    utils.wait_for_img(Windows.Agency.Buttons.SetDestination, period=1)
+    utils.wait_for_img(Windows.Agency.Buttons.SetDestination, period=1, threshold=0.9)
     utils.left_click(Windows.Agency.Buttons.SetDestination)
 
     Windows.Agency.close()
@@ -243,7 +244,7 @@ def FSM_STORAGE_EMPTY_MINERALS() -> callable:
 
     Windows.Storage.close()
 
-    return FSM_AGENCY_FIND_PYROXERES
+    return FSM_AGENCY_FIND_ASTEROIDS
 
 
 class Engine:
