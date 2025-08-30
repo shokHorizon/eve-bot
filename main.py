@@ -34,7 +34,7 @@ def FSM_JUMP_UNTIL_HOME() -> callable:
         if utils.wait_for_img(Navigations.Icons.GoalGates, period=0):
             utils.right_click(Navigations.Icons.GoalGates)
             
-            utils.wait_for_img(Navigations.Actions.MakeJump.images, period=15, must_find=True)
+            utils.wait_for_img(Navigations.Actions.MakeJump.images, period=15)
             utils.left_click(Navigations.Actions.MakeJump.images)
 
             continue
@@ -82,10 +82,10 @@ def FSM_NEXT_ASTEROID_BELT() -> callable:
             utils.left_click(Navigations.Objects.Resources.Types.AsteroidBelt.images)
             if utils.wait_for_img(Windows.Agency.Buttons.EnterWarpMode, period=2):
                 utils.left_click(Windows.Agency.Buttons.EnterWarpMode)
-                Windows.Agency.close()
-                utils.wait_for_img(ShipControls.Speed.Active, period=10, must_find=True)
                 break
             utils.scroll()
+
+    Windows.Agency.close()
 
     utils.left_click(Navigations.Filters.Aims)
 
@@ -99,7 +99,7 @@ def FSM_NEXT_ASTEROID_BELT() -> callable:
 def FSM_FIND_ORE() -> callable:
     print('FSM_FIND_ORE')
 
-    utils.left_click(Navigations.Tabs.Asteroids)
+    utils.left_click(Navigations.Tabs.Asteroids.images)
 
     Windows.Storage.close()
 
@@ -111,9 +111,7 @@ def FSM_FIND_ORE() -> callable:
         utils.left_click(Navigations.Filters.Distance.Unsorted.images)
 
     utils.move_to(Navigations.Filters.Distance.Asc.images)
-    utils.scrollTop()
-
-     
+    utils.scrollTop()     
 
     start_time = time.time()
     timeout = 15
