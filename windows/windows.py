@@ -31,7 +31,7 @@ class Window:
         else:
             utils.press_keys(self.keys)
 
-        return not utils.wait_for_img(self.window_title, period=0.1)
+        return not utils.wait_for_img(self.window_title, period=1)
 
 class StorageWindow(Window):
     def __init__(self):
