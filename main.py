@@ -65,19 +65,42 @@ def FSM_SET_HOME_DESTINATION() -> callable:
 
 def FSM_NEXT_ASTEROID_BELT() -> callable:
     print('FSM_NEXT_ASTEROID_BELT')
-    utils.wait_for_img(Navigations.Objects.Resources.Types.AsteroidBelt.images, period=0, must_find=True)
-    utils.right_click(Navigations.Objects.Resources.Types.AsteroidBelt.images)
 
-    utils.wait_for_img(Navigations.Actions.EnterWarpMode, period=10, must_find=True)
-    utils.left_click(Navigations.Actions.EnterWarpMode)
+    utils.left_click(Navigations.Filters.Aims)
 
-    utils.wait_for_img(ShipControls.Speed.Active, period=10)
-    utils.wait_for_img(ShipControls.Speed.Inactive, period=50, must_find=True)
+    Windows.Agency.open()
+    utils.wait_for_img(Windows.Agency.Tabs.ResourceGathering, period=5, must_find=True)
+    utils.left_click(Windows.Agency.Tabs.ResourceGathering)
 
-    return FSM_FIND_ORE
+    utils.wait_for_img(Windows.Agency.Buttons.AsteroidBelts, period=5, must_find=True)
+    utils.left_click(Windows.Agency.Buttons.AsteroidBelts)
+
+    utils.wait_for_img(Navigations.Objects.Resources.Types.AsteroidBelt.images, period=5, must_find=True)
+
+    while True:
+        if utils.wait_for_img(Navigations.Objects.Resources.Types.AsteroidBelt.images, period=0):
+            utils.left_click(Navigations.Objects.Resources.Types.AsteroidBelt.images)
+            if utils.wait_for_img(Windows.Agency.Buttons.EnterWarpMode, period=2):
+                utils.left_click(Windows.Agency.Buttons.EnterWarpMode)
+                Windows.Agency.close()
+                utils.wait_for_img(ShipControls.Speed.Active, period=10, must_find=True)
+                break
+            utils.scroll()
+
+    utils.left_click(Navigations.Filters.Aims)
+
+    finder = Finder()
+
+    finder.add_found_trigger(ShipControls.Speed.Inactive, FSM_FIND_ORE)
+    finder.add_found_trigger(Navigations.Icons.Enemy, FSM_SET_HOME_DESTINATION)
+
+    return finder.wait_for_triggers()
 
 def FSM_FIND_ORE() -> callable:
     print('FSM_FIND_ORE')
+
+    utils.left_click(Navigations.Tabs.Asteroids)
+
     Windows.Storage.close()
 
     if utils.wait_for_img(Navigations.Tabs.Asteroids.images, period=0):
@@ -161,25 +184,7 @@ def FSM_NAVIGATION_TO_POINT() -> callable:
 
         utils.wait_for_img(Navigations.Tabs.GatesTabs.images, period=20)
 
-    return FSM_JUMP_TO_AGENCY_GOAL
-
-def FSM_JUMP_TO_AGENCY_GOAL() -> callable:
-    print('FSM_JUMP_TO_AGENCY_GOAL')
-    Windows.Agency.open()
-
-    utils.wait_for_img(Windows.Agency.Buttons.EnterWarpMode, period=5, must_find=True)
-    utils.left_click(Windows.Agency.Buttons.EnterWarpMode)
-
-    Windows.Agency.close()
-
-    utils.left_click(Navigations.Filters.Aims)
-
-    finder = Finder()
-
-    finder.add_found_trigger(ShipControls.Speed.Inactive, FSM_FIND_ORE)
-    finder.add_found_trigger(Navigations.Icons.Enemy, FSM_SET_HOME_DESTINATION)
-
-    return finder.wait_for_triggers()
+    return FSM_NEXT_ASTEROID_BELT
 
 def FSM_DOCK_EXIT() -> callable:
     print('FSM_DOCK_EXIT')
