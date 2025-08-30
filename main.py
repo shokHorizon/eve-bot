@@ -180,7 +180,7 @@ def FSM_NAVIGATION_TO_POINT() -> callable:
     while not utils.left_click(Navigations.Tabs.GatesTabs.images):
         continue
 
-    while utils.wait_for_imgs((Navigations.Icons.GoalGates, Navigations), (), period=5):
+    while utils.wait_for_img(Navigations.Icons.GoalGates, period=5):
         utils.right_click(Navigations.Icons.GoalGates)
         
         utils.wait_for_img(Navigations.Actions.MakeJump.images, period=1, must_find=True)
