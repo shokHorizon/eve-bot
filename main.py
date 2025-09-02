@@ -180,14 +180,14 @@ def FSM_NAVIGATION_TO_POINT() -> callable:
     while not utils.wait_for_img(Navigations.Tabs.GatesTabs.images, period=15, must_find=True):
         utils.left_click(Navigations.Tabs.GatesTabs.images)
 
-    while utils.wait_for_img(Navigations.Icons.GoalGates, period=10):
+    while utils.wait_for_img(Navigations.Icons.GoalGates, period=10, threshold=0.99):
         utils.right_click(Navigations.Icons.GoalGates)
         
         utils.wait_for_img(Navigations.Actions.MakeJump.images, period=5)
         if not utils.left_click(Navigations.Actions.MakeJump.images):
             continue
 
-        if utils.wait_for_img(Navigations.Icons.GoalGates, period=0):
+        while utils.wait_for_img(Navigations.Icons.GoalGates, period=0):
             continue
 
     return FSM_NEXT_ASTEROID_BELT
