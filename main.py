@@ -39,7 +39,7 @@ def FSM_JUMP_UNTIL_HOME() -> callable:
             
             utils.left_click(Navigations.Actions.MakeJump.images)
 
-            while utils.wait_for_img(Navigations.Icons.GoalGates):
+            while utils.wait_for_img(Navigations.Icons.GoalGates, threshold=0.99):
                 continue
 
             continue
