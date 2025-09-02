@@ -34,13 +34,11 @@ def FSM_JUMP_UNTIL_HOME() -> callable:
         if utils.wait_for_img(Navigations.Icons.GoalGates, period=0):
             utils.right_click(Navigations.Icons.GoalGates)
             
-            if not utils.wait_for_img(Navigations.Actions.MakeJump.images, period=15) or not utils.left_click(Navigations.Actions.MakeJump.images):
+            if not utils.wait_for_img(Navigations.Actions.MakeJump.images, period=3) or not utils.left_click(Navigations.Actions.MakeJump.images):
                 continue
 
             while utils.wait_for_img(Navigations.Icons.GoalGates, threshold=0.99):
                 continue
-
-            continue
 
         if utils.wait_for_img(Navigations.Actions.Dock, period=0):
             if utils.left_click(Navigations.Actions.Dock):
