@@ -258,9 +258,9 @@ def init_state_route() -> callable:
     
     utils.left_click(Navigations.Tabs.Asteroids.images)
     if utils.wait_for_imgs((
-        Navigations.Objects.Resources.Types.AsteroidBelt,
-        Navigations.Objects.Resources.Types.Pyroxeres,
-        Navigations.Objects.Resources.Types.Scordite,
+        Navigations.Objects.Resources.Types.AsteroidBelt.images,
+        Navigations.Objects.Resources.Types.Pyroxeres.images,
+        Navigations.Objects.Resources.Types.Scordite.images,
         ), (), period=0):
         return FSM_MINING
     
