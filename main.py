@@ -256,7 +256,7 @@ def init_state_route() -> callable:
     if utils.wait_for_img(Windows.Dock.Buttons.ExitDock, period=0):
         return FSM_STORAGE_EMPTY_MINERALS
     
-    utils.left_click(Navigations.Tabs.Asteroids.images, period=0)
+    utils.left_click(Navigations.Tabs.Asteroids.images)
     if utils.wait_for_imgs((
         Navigations.Objects.Resources.Types.AsteroidBelt,
         Navigations.Objects.Resources.Types.Pyroxeres,
