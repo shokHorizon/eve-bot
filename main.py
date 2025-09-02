@@ -261,7 +261,7 @@ def init_state_route() -> callable:
         Navigations.Objects.Resources.Types.AsteroidBelt,
         Navigations.Objects.Resources.Types.Pyroxeres,
         Navigations.Objects.Resources.Types.Scordite,
-        ) (), period=0):
+        ), (), period=0):
         return FSM_MINING
     
     return FSM_SET_HOME_DESTINATION
