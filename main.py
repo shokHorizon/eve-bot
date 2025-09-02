@@ -137,10 +137,10 @@ def FSM_FIND_ORE() -> callable:
 def FSM_ACTIVATE_ALL_MINERS() -> callable:
     print('FSM_ACTIVATE_ALL_MINERS')
 
-    while utils.wait_for_img(ShipControls.Miner.Active, period=2, threshold=0.99):
+    while utils.wait_for_img(ShipControls.Miner.Active, period=2, threshold=0.98):
         utils.left_click(ShipControls.Miner.Active, threshold=0.98)
 
-    while not utils.wait_for_img(ShipControls.Miner.Active, period=2, threshold=0.98):
+    while not utils.wait_for_img(ShipControls.Miner.Active, period=5):
         ShipControls.Miner.activate()
 
     return
@@ -183,7 +183,7 @@ def FSM_NAVIGATION_TO_POINT() -> callable:
     while utils.wait_for_img(Navigations.Icons.GoalGates, period=10):
         utils.right_click(Navigations.Icons.GoalGates)
         
-        utils.wait_for_img(Navigations.Actions.MakeJump.images, period=1, must_find=True)
+        utils.wait_for_img(Navigations.Actions.MakeJump.images, period=5)
         if not utils.left_click(Navigations.Actions.MakeJump.images):
             continue
 
