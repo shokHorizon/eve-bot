@@ -20,7 +20,7 @@ class Window:
         else:
             utils.press_keys(self.keys)
 
-        return utils.wait_for_img(self.window_title, period=2, must_find=True)
+        return utils.wait_for_img(self.window_title, period=5, must_find=True)
 
     def close(self) -> bool:
         if not self.is_opened():
