@@ -34,10 +34,8 @@ def FSM_JUMP_UNTIL_HOME() -> callable:
         if utils.wait_for_img(Navigations.Icons.GoalGates, period=0):
             utils.right_click(Navigations.Icons.GoalGates)
             
-            if not utils.wait_for_img(Navigations.Actions.MakeJump.images, period=15):
+            if not utils.wait_for_img(Navigations.Actions.MakeJump.images, period=15) or not utils.left_click(Navigations.Actions.MakeJump.images):
                 continue
-            
-            utils.left_click(Navigations.Actions.MakeJump.images)
 
             while utils.wait_for_img(Navigations.Icons.GoalGates, threshold=0.99):
                 continue
@@ -66,7 +64,7 @@ def FSM_SET_HOME_DESTINATION() -> callable:
 
     Windows.Profile.close()
 
-    return FSM_JUMP_UNTIL_HOME()
+    return FSM_JUMP_UNTIL_HOME
 
 def FSM_NEXT_ASTEROID_BELT() -> callable:
     print('FSM_NEXT_ASTEROID_BELT')
@@ -143,7 +141,7 @@ def FSM_ACTIVATE_ALL_MINERS() -> callable:
     while utils.wait_for_img(ShipControls.Miner.Active, period=2, threshold=0.98):
         utils.left_click(ShipControls.Miner.Active, threshold=0.98)
 
-    while not utils.wait_for_img(ShipControls.Miner.Active, period=5, threshold=0.98):
+    while not utils.wait_for_img(ShipControls.Miner.Active, period=2, threshold=0.98):
         ShipControls.Miner.activate()
 
     return
@@ -258,7 +256,6 @@ def init_state_route() -> callable:
     
     utils.left_click(Navigations.Tabs.Asteroids.images)
     if utils.wait_for_imgs((
-        Navigations.Objects.Resources.Types.AsteroidBelt.images,
         Navigations.Objects.Resources.Types.Pyroxeres.images,
         Navigations.Objects.Resources.Types.Scordite.images,
         ), (), period=0):
