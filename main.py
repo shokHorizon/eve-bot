@@ -176,9 +176,9 @@ def FSM_MINING() -> callable:
 def FSM_NAVIGATION_TO_POINT() -> callable:
     print('FSM_NAVIGATION_TO_POINT')
 
-    utils.wait_for_img(Navigations.Tabs.GatesTabs.images, period=10, must_find=True)
-    while not utils.left_click(Navigations.Tabs.GatesTabs.images):
-        continue
+    
+    while not utils.wait_for_img(Navigations.Tabs.GatesTabs.images, period=15, must_find=True):
+        utils.left_click(Navigations.Tabs.GatesTabs.images)
 
     while utils.wait_for_img(Navigations.Icons.GoalGates, period=10):
         utils.right_click(Navigations.Icons.GoalGates)
