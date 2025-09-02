@@ -180,7 +180,7 @@ def FSM_NAVIGATION_TO_POINT() -> callable:
     while not utils.left_click(Navigations.Tabs.GatesTabs.images):
         continue
 
-    while utils.wait_for_img(Navigations.Icons.GoalGates, period=5):
+    while utils.wait_for_img(Navigations.Icons.GoalGates, period=10):
         utils.right_click(Navigations.Icons.GoalGates)
         
         utils.wait_for_img(Navigations.Actions.MakeJump.images, period=1, must_find=True)
@@ -188,9 +188,6 @@ def FSM_NAVIGATION_TO_POINT() -> callable:
             continue
 
         if utils.wait_for_img(Navigations.Icons.GoalGates, period=0):
-            continue
-
-        while utils.wait_for_img(Navigations.Tabs.GatesTabs.images, period=20):
             continue
 
     return FSM_NEXT_ASTEROID_BELT
@@ -251,6 +248,12 @@ def FSM_STORAGE_EMPTY_MINERALS() -> callable:
     Windows.Storage.close()
 
     return FSM_AGENCY_FIND_ASTEROIDS
+
+def init_state_route() -> callable:
+    if utils.wait_for_img(Windows.Dock.Buttons.ExitDock, period=0):
+        return FSM_STORAGE_EMPTY_MINERALS
+    
+    return FSM_SET_HOME_DESTINATION
 
 
 class Engine:
@@ -492,7 +495,7 @@ class Engine:
         self.wait_for_img_v1(Navigations.ExitTheDock, 120, 0.8)
 
     def prepare_for_mining(self):
-        fun = FSM_STORAGE_EMPTY_MINERALS
+        fun = init_state_route()
 
         while fun is not None:
             fun = fun()
