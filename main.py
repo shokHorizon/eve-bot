@@ -34,15 +34,20 @@ def FSM_JUMP_UNTIL_HOME() -> callable:
         if utils.wait_for_img(Navigations.Icons.GoalGates, period=0):
             utils.right_click(Navigations.Icons.GoalGates)
             
-            utils.wait_for_img(Navigations.Actions.MakeJump.images, period=15)
+            if not utils.wait_for_img(Navigations.Actions.MakeJump.images, period=15):
+                continue
+            
             utils.left_click(Navigations.Actions.MakeJump.images)
+
+            while utils.wait_for_img(Navigations.Icons.GoalGates):
+                continue
 
             continue
 
         if utils.wait_for_img(Navigations.Actions.Dock, period=0):
-            utils.left_click(Navigations.Actions.Dock)
-
-            continue
+            if utils.left_click(Navigations.Actions.Dock):
+                utils.wait_for_img(Navigations.Dock.Buttons.Exit.images)
+                break
 
     return FSM_STORAGE_EMPTY_MINERALS
 
@@ -86,8 +91,6 @@ def FSM_NEXT_ASTEROID_BELT() -> callable:
             utils.scroll()
 
     Windows.Agency.close()
-
-    utils.wait_for_img(ShipControls.Speed.Active, period=15, must_find=True)
 
     utils.left_click(Navigations.Filters.Aims)
 
@@ -137,8 +140,8 @@ def FSM_FIND_ORE() -> callable:
 def FSM_ACTIVATE_ALL_MINERS() -> callable:
     print('FSM_ACTIVATE_ALL_MINERS')
 
-    while utils.wait_for_img(ShipControls.Miner.Active, period=2, threshold=0.98):
-        utils.left_click(ShipControls.Miner.Active, threshold=0.98)
+    while utils.wait_for_img(ShipControls.Miner.Active, period=2):
+        utils.left_click(ShipControls.Miner.Active)
 
     while not utils.wait_for_img(ShipControls.Miner.Active, period=5):
         ShipControls.Miner.activate()
