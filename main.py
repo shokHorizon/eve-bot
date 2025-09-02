@@ -140,10 +140,10 @@ def FSM_FIND_ORE() -> callable:
 def FSM_ACTIVATE_ALL_MINERS() -> callable:
     print('FSM_ACTIVATE_ALL_MINERS')
 
-    while utils.wait_for_img(ShipControls.Miner.Active, period=2):
-        utils.left_click(ShipControls.Miner.Active)
+    while utils.wait_for_img(ShipControls.Miner.Active, period=2, threshold=0.98):
+        utils.left_click(ShipControls.Miner.Active, threshold=0.98)
 
-    while not utils.wait_for_img(ShipControls.Miner.Active, period=5):
+    while not utils.wait_for_img(ShipControls.Miner.Active, period=5, threshold=0.98):
         ShipControls.Miner.activate()
 
     return
@@ -255,6 +255,14 @@ def FSM_STORAGE_EMPTY_MINERALS() -> callable:
 def init_state_route() -> callable:
     if utils.wait_for_img(Windows.Dock.Buttons.ExitDock, period=0):
         return FSM_STORAGE_EMPTY_MINERALS
+    
+    utils.left_click(Navigations.Tabs.Asteroids.images, period=0)
+    if utils.wait_for_imgs((
+        Navigations.Objects.Resources.Types.AsteroidBelt,
+        Navigations.Objects.Resources.Types.Pyroxeres,
+        Navigations.Objects.Resources.Types.Scordite,
+        ) (), period=0):
+        return FSM_MINING
     
     return FSM_SET_HOME_DESTINATION
 
