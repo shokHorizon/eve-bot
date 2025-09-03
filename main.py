@@ -41,9 +41,10 @@ def FSM_JUMP_UNTIL_HOME() -> callable:
                 continue
 
         if utils.wait_for_img(Navigations.Actions.Dock, period=0):
-            if utils.left_click(Navigations.Actions.Dock):
-                utils.wait_for_img(Navigations.Dock.Buttons.Exit.images)
-                break
+            while utils.wait_for_img(ShipControls.Speed.Inactive.images, period=0):
+                if utils.left_click(Navigations.Actions.Dock):
+                    utils.wait_for_img(Navigations.Dock.Buttons.Exit.images)
+            break
 
     return FSM_STORAGE_EMPTY_MINERALS
 
