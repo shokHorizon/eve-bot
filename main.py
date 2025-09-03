@@ -139,8 +139,7 @@ def FSM_ACTIVATE_ALL_MINERS() -> callable:
     while utils.wait_for_img(ShipControls.Miner.Active, period=2, threshold=0.99):
         utils.left_click(ShipControls.Miner.Active, threshold=0.99)
 
-    while not utils.wait_for_img(ShipControls.Miner.Active, period=2, threshold=0.99):
-        ShipControls.Miner.activate()
+    ShipControls.Miner.activate()
 
     return
 
@@ -162,6 +161,8 @@ def FSM_MINING() -> callable:
     utils.left_click(Windows.Storage.Tabs.Ore)
 
     utils.left_click(Navigations.Filters.Aims)
+
+    utils.wait_for_img(ChosenObjects.Unlock.images)
 
     finder = Finder()
 

@@ -22,8 +22,8 @@ class Finder:
         self.Triggers[imageWrapper.name] = effect
         self.ImagesMustFind.append(imageWrapper)
 
-    def wait_for_triggers(self) -> callable:
+    def wait_for_triggers(self, period: float, threshold: float) -> callable:
         while True:
-            found_image = utils.wait_for_imgs(self.Images, self.ImagesMustFind)
+            found_image = utils.wait_for_imgs(self.Images, self.ImagesMustFind, period=period, threshold=threshold)
                 
             return self.Triggers[found_image.name]
