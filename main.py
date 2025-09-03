@@ -163,7 +163,7 @@ def FSM_MINING() -> callable:
 
     utils.left_click(Navigations.Filters.Aims)
 
-    utils.wait_for_img(ChosenObjects.Unlock.images, threshold=0.9)
+    utils.wait_for_img(ChosenObjects.Unlock.images, period=5, threshold=0.9)
 
     finder = Finder()
 
