@@ -152,8 +152,8 @@ def FSM_ORBIT_AND_LOCK_TARGET(fun: callable = FSM_ACTIVATE_ALL_MINERS) -> callab
         utils.wait_for_img(ChosenObjects.Orbit.images, period=0, threshold=0.99, must_find=True)
         utils.left_click(ChosenObjects.Orbit.images, threshold=0.99)
 
-        utils.wait_for_img(ChosenObjects.Lock.images, period=1, threshold=0.99)
-        utils.left_click(ChosenObjects.Lock.images, threshold=0.99)
+        utils.wait_for_img(ChosenObjects.Lock.images, period=1, threshold=1)
+        utils.left_click(ChosenObjects.Lock.images)
 
     return fun
         
