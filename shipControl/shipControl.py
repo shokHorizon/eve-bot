@@ -15,8 +15,8 @@ class ShipControl:
     def is_inactive(self):
         return utils.wait_for_img(self.Inactive, period=1)
     
-    def activate(self):
-        utils.left_click_all(self.Inactive)
+    def activate(self) -> bool:
+        return utils.left_click_all(self.Inactive)
     
     def deactivate(self):
         if utils.wait_for_img(self.Active, period=2):

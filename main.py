@@ -140,7 +140,8 @@ def FSM_ACTIVATE_ALL_MINERS() -> callable:
     while utils.wait_for_img(ShipControls.Miner.Active, period=2, threshold=0.99):
         utils.left_click(ShipControls.Miner.Active, threshold=0.99)
 
-    ShipControls.Miner.activate()
+    while not ShipControls.Miner.activate():
+        continue
 
     return
 
