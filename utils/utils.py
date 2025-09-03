@@ -56,7 +56,7 @@ def left_click(img: ImagePoolWrapper, threshold=0.95, offset = 5):
         
         pyautogui.moveTo(max_loc[0] + offset, max_loc[1] + offset)
         pyautogui.leftClick(max_loc[0] + offset, max_loc[1] + offset)
-        pyautogui.moveTo(10, 10)
+        pyautogui.moveTo(pyautogui.size().width/2, 0)
 
         return True
 
@@ -77,7 +77,7 @@ def left_click_all(img: ImagePoolWrapper, threshold=0.95, offset = 5):
         for pt in zip(*loc[::-1]):
             pyautogui.moveTo(pt[0] + offset, pt[1] + offset)
             pyautogui.leftClick(pt[0] + offset, pt[1] + offset)
-            pyautogui.moveTo(10, 10)
+            pyautogui.moveTo(pyautogui.size().width/2, 0)
 
     return True
     
@@ -94,7 +94,7 @@ def right_click(img: ImagePoolWrapper, threshold=0.95, offset = 5):
         
         pyautogui.moveTo(max_loc[0] + offset, max_loc[1] + offset)
         pyautogui.rightClick(max_loc[0] + offset, max_loc[1] + offset)
-        pyautogui.moveTo(10, 10)
+        pyautogui.moveTo(pyautogui.size().width/2, 0)
 
         return True
 
